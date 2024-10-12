@@ -43,6 +43,12 @@ public:
   virtual void enterOutputStatement(CythonPPParser::OutputStatementContext * /*ctx*/) override { }
   virtual void exitOutputStatement(CythonPPParser::OutputStatementContext * /*ctx*/) override { }
 
+  virtual void enterParameterList(CythonPPParser::ParameterListContext * /*ctx*/) override { }
+  virtual void exitParameterList(CythonPPParser::ParameterListContext * /*ctx*/) override { }
+
+  virtual void enterTypeSpecifier(CythonPPParser::TypeSpecifierContext * /*ctx*/) override { }
+  virtual void exitTypeSpecifier(CythonPPParser::TypeSpecifierContext * /*ctx*/) override { }
+
 
   virtual void enterEveryRule(antlr4::ParserRuleContext * /*ctx*/) override { }
   virtual void exitEveryRule(antlr4::ParserRuleContext * /*ctx*/) override { }

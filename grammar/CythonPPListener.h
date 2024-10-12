@@ -41,6 +41,12 @@ public:
   virtual void enterOutputStatement(CythonPPParser::OutputStatementContext *ctx) = 0;
   virtual void exitOutputStatement(CythonPPParser::OutputStatementContext *ctx) = 0;
 
+  virtual void enterParameterList(CythonPPParser::ParameterListContext *ctx) = 0;
+  virtual void exitParameterList(CythonPPParser::ParameterListContext *ctx) = 0;
+
+  virtual void enterTypeSpecifier(CythonPPParser::TypeSpecifierContext *ctx) = 0;
+  virtual void exitTypeSpecifier(CythonPPParser::TypeSpecifierContext *ctx) = 0;
+
 
 };
 

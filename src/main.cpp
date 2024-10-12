@@ -7,7 +7,7 @@ using namespace antlr4;
 
 int main() {
     // Sample input to parse
-    std::string code = "auto age = 10; class Cat { auto speak() { cout << \"Meow\"; } }";
+    std::string code = "age = 10; class Cat { speak() { cout << \"Meow\"; } }";
 
     // Create an input stream for the code
     ANTLRInputStream input(code);

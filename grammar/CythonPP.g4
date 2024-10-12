@@ -28,7 +28,7 @@ statement: variableDeclaration
          | outputStatement
          ;
 
-variableDeclaration: (AUTO | 'int' | 'string') IDENTIFIER EQ expression SEMI;
+variableDeclaration: typeSpecifier? IDENTIFIER EQ expression SEMI;
 
 assignment: IDENTIFIER EQ expression SEMI;
 
@@ -39,8 +39,12 @@ expression: IDENTIFIER
 
 classDeclaration: CLASS IDENTIFIER LBRACE statement* RBRACE;
 
-functionDefinition: AUTO IDENTIFIER LPAREN RPAREN LBRACE statement* RBRACE;
+functionDefinition: typeSpecifier? IDENTIFIER LPAREN parameterList? RPAREN LBRACE statement* RBRACE;
 
 functionCall: IDENTIFIER LPAREN (expression (',' expression)*)? RPAREN SEMI;
 
 outputStatement: COUT LT_LT expression (LT_LT expression)* SEMI;
+
+parameterList: (typeSpecifier IDENTIFIER (',' typeSpecifier IDENTIFIER)*)?;
+
+typeSpecifier: AUTO | 'int' | 'string' | 'float' | 'void';

@@ -12,9 +12,10 @@
 class  CythonPPLexer : public antlr4::Lexer {
 public:
   enum {
-    T__0 = 1, T__1 = 2, T__2 = 3, AUTO = 4, CLASS = 5, COUT = 6, LT_LT = 7, 
-    IDENTIFIER = 8, NUMBER = 9, STRING = 10, WS = 11, SEMI = 12, COLON = 13, 
-    LBRACE = 14, RBRACE = 15, LPAREN = 16, RPAREN = 17, EQ = 18
+    T__0 = 1, T__1 = 2, T__2 = 3, T__3 = 4, T__4 = 5, AUTO = 6, CLASS = 7, 
+    COUT = 8, LT_LT = 9, IDENTIFIER = 10, NUMBER = 11, STRING = 12, WS = 13, 
+    SEMI = 14, COLON = 15, LBRACE = 16, RBRACE = 17, LPAREN = 18, RPAREN = 19, 
+    EQ = 20
   };
 
   explicit CythonPPLexer(antlr4::CharStream *input);

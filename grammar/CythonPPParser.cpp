@@ -53,47 +53,58 @@ void cythonppParserInitialize() {
   auto staticData = std::make_unique<CythonPPParserStaticData>(
     std::vector<std::string>{
       "program", "statement", "variableDeclaration", "assignment", "expression", 
-      "classDeclaration", "functionDefinition", "functionCall", "outputStatement"
+      "classDeclaration", "functionDefinition", "functionCall", "outputStatement", 
+      "parameterList", "typeSpecifier"
     },
     std::vector<std::string>{
-      "", "'int'", "'string'", "','", "'auto'", "'class'", "'cout'", "'<<'", 
-      "", "", "", "", "';'", "':'", "'{'", "'}'", "'('", "')'", "'='"
+      "", "','", "'int'", "'string'", "'float'", "'void'", "'auto'", "'class'", 
+      "'cout'", "'<<'", "", "", "", "", "';'", "':'", "'{'", "'}'", "'('", 
+      "')'", "'='"
     },
     std::vector<std::string>{
-      "", "", "", "", "AUTO", "CLASS", "COUT", "LT_LT", "IDENTIFIER", "NUMBER", 
-      "STRING", "WS", "SEMI", "COLON", "LBRACE", "RBRACE", "LPAREN", "RPAREN", 
-      "EQ"
+      "", "", "", "", "", "", "AUTO", "CLASS", "COUT", "LT_LT", "IDENTIFIER", 
+      "NUMBER", "STRING", "WS", "SEMI", "COLON", "LBRACE", "RBRACE", "LPAREN", 
+      "RPAREN", "EQ"
     }
   );
   static const int32_t serializedATNSegment[] = {
-  	4,1,18,97,2,0,7,0,2,1,7,1,2,2,7,2,2,3,7,3,2,4,7,4,2,5,7,5,2,6,7,6,2,7,
-  	7,7,2,8,7,8,1,0,5,0,20,8,0,10,0,12,0,23,9,0,1,1,1,1,1,1,1,1,1,1,1,1,3,
-  	1,31,8,1,1,2,1,2,1,2,1,2,1,2,1,2,1,3,1,3,1,3,1,3,1,3,1,4,1,4,1,5,1,5,
-  	1,5,1,5,5,5,50,8,5,10,5,12,5,53,9,5,1,5,1,5,1,6,1,6,1,6,1,6,1,6,1,6,5,
-  	6,63,8,6,10,6,12,6,66,9,6,1,6,1,6,1,7,1,7,1,7,1,7,1,7,5,7,75,8,7,10,7,
-  	12,7,78,9,7,3,7,80,8,7,1,7,1,7,1,7,1,8,1,8,1,8,1,8,1,8,5,8,90,8,8,10,
-  	8,12,8,93,9,8,1,8,1,8,1,8,0,0,9,0,2,4,6,8,10,12,14,16,0,2,2,0,1,2,4,4,
-  	1,0,8,10,98,0,21,1,0,0,0,2,30,1,0,0,0,4,32,1,0,0,0,6,38,1,0,0,0,8,43,
-  	1,0,0,0,10,45,1,0,0,0,12,56,1,0,0,0,14,69,1,0,0,0,16,84,1,0,0,0,18,20,
-  	3,2,1,0,19,18,1,0,0,0,20,23,1,0,0,0,21,19,1,0,0,0,21,22,1,0,0,0,22,1,
-  	1,0,0,0,23,21,1,0,0,0,24,31,3,4,2,0,25,31,3,6,3,0,26,31,3,10,5,0,27,31,
-  	3,12,6,0,28,31,3,14,7,0,29,31,3,16,8,0,30,24,1,0,0,0,30,25,1,0,0,0,30,
-  	26,1,0,0,0,30,27,1,0,0,0,30,28,1,0,0,0,30,29,1,0,0,0,31,3,1,0,0,0,32,
-  	33,7,0,0,0,33,34,5,8,0,0,34,35,5,18,0,0,35,36,3,8,4,0,36,37,5,12,0,0,
-  	37,5,1,0,0,0,38,39,5,8,0,0,39,40,5,18,0,0,40,41,3,8,4,0,41,42,5,12,0,
-  	0,42,7,1,0,0,0,43,44,7,1,0,0,44,9,1,0,0,0,45,46,5,5,0,0,46,47,5,8,0,0,
-  	47,51,5,14,0,0,48,50,3,2,1,0,49,48,1,0,0,0,50,53,1,0,0,0,51,49,1,0,0,
-  	0,51,52,1,0,0,0,52,54,1,0,0,0,53,51,1,0,0,0,54,55,5,15,0,0,55,11,1,0,
-  	0,0,56,57,5,4,0,0,57,58,5,8,0,0,58,59,5,16,0,0,59,60,5,17,0,0,60,64,5,
-  	14,0,0,61,63,3,2,1,0,62,61,1,0,0,0,63,66,1,0,0,0,64,62,1,0,0,0,64,65,
-  	1,0,0,0,65,67,1,0,0,0,66,64,1,0,0,0,67,68,5,15,0,0,68,13,1,0,0,0,69,70,
-  	5,8,0,0,70,79,5,16,0,0,71,76,3,8,4,0,72,73,5,3,0,0,73,75,3,8,4,0,74,72,
-  	1,0,0,0,75,78,1,0,0,0,76,74,1,0,0,0,76,77,1,0,0,0,77,80,1,0,0,0,78,76,
-  	1,0,0,0,79,71,1,0,0,0,79,80,1,0,0,0,80,81,1,0,0,0,81,82,5,17,0,0,82,83,
-  	5,12,0,0,83,15,1,0,0,0,84,85,5,6,0,0,85,86,5,7,0,0,86,91,3,8,4,0,87,88,
-  	5,7,0,0,88,90,3,8,4,0,89,87,1,0,0,0,90,93,1,0,0,0,91,89,1,0,0,0,91,92,
-  	1,0,0,0,92,94,1,0,0,0,93,91,1,0,0,0,94,95,5,12,0,0,95,17,1,0,0,0,7,21,
-  	30,51,64,76,79,91
+  	4,1,20,123,2,0,7,0,2,1,7,1,2,2,7,2,2,3,7,3,2,4,7,4,2,5,7,5,2,6,7,6,2,
+  	7,7,7,2,8,7,8,2,9,7,9,2,10,7,10,1,0,5,0,24,8,0,10,0,12,0,27,9,0,1,1,1,
+  	1,1,1,1,1,1,1,1,1,3,1,35,8,1,1,2,3,2,38,8,2,1,2,1,2,1,2,1,2,1,2,1,3,1,
+  	3,1,3,1,3,1,3,1,4,1,4,1,5,1,5,1,5,1,5,5,5,56,8,5,10,5,12,5,59,9,5,1,5,
+  	1,5,1,6,3,6,64,8,6,1,6,1,6,1,6,3,6,69,8,6,1,6,1,6,1,6,5,6,74,8,6,10,6,
+  	12,6,77,9,6,1,6,1,6,1,7,1,7,1,7,1,7,1,7,5,7,86,8,7,10,7,12,7,89,9,7,3,
+  	7,91,8,7,1,7,1,7,1,7,1,8,1,8,1,8,1,8,1,8,5,8,101,8,8,10,8,12,8,104,9,
+  	8,1,8,1,8,1,9,1,9,1,9,1,9,1,9,1,9,5,9,114,8,9,10,9,12,9,117,9,9,3,9,119,
+  	8,9,1,10,1,10,1,10,0,0,11,0,2,4,6,8,10,12,14,16,18,20,0,2,1,0,10,12,1,
+  	0,2,6,127,0,25,1,0,0,0,2,34,1,0,0,0,4,37,1,0,0,0,6,44,1,0,0,0,8,49,1,
+  	0,0,0,10,51,1,0,0,0,12,63,1,0,0,0,14,80,1,0,0,0,16,95,1,0,0,0,18,118,
+  	1,0,0,0,20,120,1,0,0,0,22,24,3,2,1,0,23,22,1,0,0,0,24,27,1,0,0,0,25,23,
+  	1,0,0,0,25,26,1,0,0,0,26,1,1,0,0,0,27,25,1,0,0,0,28,35,3,4,2,0,29,35,
+  	3,6,3,0,30,35,3,10,5,0,31,35,3,12,6,0,32,35,3,14,7,0,33,35,3,16,8,0,34,
+  	28,1,0,0,0,34,29,1,0,0,0,34,30,1,0,0,0,34,31,1,0,0,0,34,32,1,0,0,0,34,
+  	33,1,0,0,0,35,3,1,0,0,0,36,38,3,20,10,0,37,36,1,0,0,0,37,38,1,0,0,0,38,
+  	39,1,0,0,0,39,40,5,10,0,0,40,41,5,20,0,0,41,42,3,8,4,0,42,43,5,14,0,0,
+  	43,5,1,0,0,0,44,45,5,10,0,0,45,46,5,20,0,0,46,47,3,8,4,0,47,48,5,14,0,
+  	0,48,7,1,0,0,0,49,50,7,0,0,0,50,9,1,0,0,0,51,52,5,7,0,0,52,53,5,10,0,
+  	0,53,57,5,16,0,0,54,56,3,2,1,0,55,54,1,0,0,0,56,59,1,0,0,0,57,55,1,0,
+  	0,0,57,58,1,0,0,0,58,60,1,0,0,0,59,57,1,0,0,0,60,61,5,17,0,0,61,11,1,
+  	0,0,0,62,64,3,20,10,0,63,62,1,0,0,0,63,64,1,0,0,0,64,65,1,0,0,0,65,66,
+  	5,10,0,0,66,68,5,18,0,0,67,69,3,18,9,0,68,67,1,0,0,0,68,69,1,0,0,0,69,
+  	70,1,0,0,0,70,71,5,19,0,0,71,75,5,16,0,0,72,74,3,2,1,0,73,72,1,0,0,0,
+  	74,77,1,0,0,0,75,73,1,0,0,0,75,76,1,0,0,0,76,78,1,0,0,0,77,75,1,0,0,0,
+  	78,79,5,17,0,0,79,13,1,0,0,0,80,81,5,10,0,0,81,90,5,18,0,0,82,87,3,8,
+  	4,0,83,84,5,1,0,0,84,86,3,8,4,0,85,83,1,0,0,0,86,89,1,0,0,0,87,85,1,0,
+  	0,0,87,88,1,0,0,0,88,91,1,0,0,0,89,87,1,0,0,0,90,82,1,0,0,0,90,91,1,0,
+  	0,0,91,92,1,0,0,0,92,93,5,19,0,0,93,94,5,14,0,0,94,15,1,0,0,0,95,96,5,
+  	8,0,0,96,97,5,9,0,0,97,102,3,8,4,0,98,99,5,9,0,0,99,101,3,8,4,0,100,98,
+  	1,0,0,0,101,104,1,0,0,0,102,100,1,0,0,0,102,103,1,0,0,0,103,105,1,0,0,
+  	0,104,102,1,0,0,0,105,106,5,14,0,0,106,17,1,0,0,0,107,108,3,20,10,0,108,
+  	115,5,10,0,0,109,110,5,1,0,0,110,111,3,20,10,0,111,112,5,10,0,0,112,114,
+  	1,0,0,0,113,109,1,0,0,0,114,117,1,0,0,0,115,113,1,0,0,0,115,116,1,0,0,
+  	0,116,119,1,0,0,0,117,115,1,0,0,0,118,107,1,0,0,0,118,119,1,0,0,0,119,
+  	19,1,0,0,0,120,121,7,1,0,0,121,21,1,0,0,0,12,25,34,37,57,63,68,75,87,
+  	90,102,115,118
   };
   staticData->serializedATN = antlr4::atn::SerializedATNView(serializedATNSegment, sizeof(serializedATNSegment) / sizeof(serializedATNSegment[0]));
 
@@ -187,14 +198,14 @@ CythonPPParser::ProgramContext* CythonPPParser::program() {
   });
   try {
     enterOuterAlt(_localctx, 1);
-    setState(21);
+    setState(25);
     _errHandler->sync(this);
     _la = _input->LA(1);
     while ((((_la & ~ 0x3fULL) == 0) &&
-      ((1ULL << _la) & 374) != 0)) {
-      setState(18);
+      ((1ULL << _la) & 1532) != 0)) {
+      setState(22);
       statement();
-      setState(23);
+      setState(27);
       _errHandler->sync(this);
       _la = _input->LA(1);
     }
@@ -268,47 +279,47 @@ CythonPPParser::StatementContext* CythonPPParser::statement() {
     exitRule();
   });
   try {
-    setState(30);
+    setState(34);
     _errHandler->sync(this);
     switch (getInterpreter<atn::ParserATNSimulator>()->adaptivePredict(_input, 1, _ctx)) {
     case 1: {
       enterOuterAlt(_localctx, 1);
-      setState(24);
+      setState(28);
       variableDeclaration();
       break;
     }
 
     case 2: {
       enterOuterAlt(_localctx, 2);
-      setState(25);
+      setState(29);
       assignment();
       break;
     }
 
     case 3: {
       enterOuterAlt(_localctx, 3);
-      setState(26);
+      setState(30);
       classDeclaration();
       break;
     }
 
     case 4: {
       enterOuterAlt(_localctx, 4);
-      setState(27);
+      setState(31);
       functionDefinition();
       break;
     }
 
     case 5: {
       enterOuterAlt(_localctx, 5);
-      setState(28);
+      setState(32);
       functionCall();
       break;
     }
 
     case 6: {
       enterOuterAlt(_localctx, 6);
-      setState(29);
+      setState(33);
       outputStatement();
       break;
     }
@@ -349,8 +360,8 @@ tree::TerminalNode* CythonPPParser::VariableDeclarationContext::SEMI() {
   return getToken(CythonPPParser::SEMI, 0);
 }
 
-tree::TerminalNode* CythonPPParser::VariableDeclarationContext::AUTO() {
-  return getToken(CythonPPParser::AUTO, 0);
+CythonPPParser::TypeSpecifierContext* CythonPPParser::VariableDeclarationContext::typeSpecifier() {
+  return getRuleContext<CythonPPParser::TypeSpecifierContext>(0);
 }
 
 
@@ -384,23 +395,22 @@ CythonPPParser::VariableDeclarationContext* CythonPPParser::variableDeclaration(
   });
   try {
     enterOuterAlt(_localctx, 1);
-    setState(32);
+    setState(37);
+    _errHandler->sync(this);
+
     _la = _input->LA(1);
-    if (!((((_la & ~ 0x3fULL) == 0) &&
-      ((1ULL << _la) & 22) != 0))) {
-    _errHandler->recoverInline(this);
+    if ((((_la & ~ 0x3fULL) == 0) &&
+      ((1ULL << _la) & 124) != 0)) {
+      setState(36);
+      typeSpecifier();
     }
-    else {
-      _errHandler->reportMatch(this);
-      consume();
-    }
-    setState(33);
+    setState(39);
     match(CythonPPParser::IDENTIFIER);
-    setState(34);
+    setState(40);
     match(CythonPPParser::EQ);
-    setState(35);
+    setState(41);
     expression();
-    setState(36);
+    setState(42);
     match(CythonPPParser::SEMI);
    
   }
@@ -465,13 +475,13 @@ CythonPPParser::AssignmentContext* CythonPPParser::assignment() {
   });
   try {
     enterOuterAlt(_localctx, 1);
-    setState(38);
+    setState(44);
     match(CythonPPParser::IDENTIFIER);
-    setState(39);
+    setState(45);
     match(CythonPPParser::EQ);
-    setState(40);
+    setState(46);
     expression();
-    setState(41);
+    setState(47);
     match(CythonPPParser::SEMI);
    
   }
@@ -533,10 +543,10 @@ CythonPPParser::ExpressionContext* CythonPPParser::expression() {
   });
   try {
     enterOuterAlt(_localctx, 1);
-    setState(43);
+    setState(49);
     _la = _input->LA(1);
     if (!((((_la & ~ 0x3fULL) == 0) &&
-      ((1ULL << _la) & 1792) != 0))) {
+      ((1ULL << _la) & 7168) != 0))) {
     _errHandler->recoverInline(this);
     }
     else {
@@ -615,24 +625,24 @@ CythonPPParser::ClassDeclarationContext* CythonPPParser::classDeclaration() {
   });
   try {
     enterOuterAlt(_localctx, 1);
-    setState(45);
-    match(CythonPPParser::CLASS);
-    setState(46);
-    match(CythonPPParser::IDENTIFIER);
-    setState(47);
-    match(CythonPPParser::LBRACE);
     setState(51);
+    match(CythonPPParser::CLASS);
+    setState(52);
+    match(CythonPPParser::IDENTIFIER);
+    setState(53);
+    match(CythonPPParser::LBRACE);
+    setState(57);
     _errHandler->sync(this);
     _la = _input->LA(1);
     while ((((_la & ~ 0x3fULL) == 0) &&
-      ((1ULL << _la) & 374) != 0)) {
-      setState(48);
+      ((1ULL << _la) & 1532) != 0)) {
+      setState(54);
       statement();
-      setState(53);
+      setState(59);
       _errHandler->sync(this);
       _la = _input->LA(1);
     }
-    setState(54);
+    setState(60);
     match(CythonPPParser::RBRACE);
    
   }
@@ -649,10 +659,6 @@ CythonPPParser::ClassDeclarationContext* CythonPPParser::classDeclaration() {
 
 CythonPPParser::FunctionDefinitionContext::FunctionDefinitionContext(ParserRuleContext *parent, size_t invokingState)
   : ParserRuleContext(parent, invokingState) {
-}
-
-tree::TerminalNode* CythonPPParser::FunctionDefinitionContext::AUTO() {
-  return getToken(CythonPPParser::AUTO, 0);
 }
 
 tree::TerminalNode* CythonPPParser::FunctionDefinitionContext::IDENTIFIER() {
@@ -673,6 +679,14 @@ tree::TerminalNode* CythonPPParser::FunctionDefinitionContext::LBRACE() {
 
 tree::TerminalNode* CythonPPParser::FunctionDefinitionContext::RBRACE() {
   return getToken(CythonPPParser::RBRACE, 0);
+}
+
+CythonPPParser::TypeSpecifierContext* CythonPPParser::FunctionDefinitionContext::typeSpecifier() {
+  return getRuleContext<CythonPPParser::TypeSpecifierContext>(0);
+}
+
+CythonPPParser::ParameterListContext* CythonPPParser::FunctionDefinitionContext::parameterList() {
+  return getRuleContext<CythonPPParser::ParameterListContext>(0);
 }
 
 std::vector<CythonPPParser::StatementContext *> CythonPPParser::FunctionDefinitionContext::statement() {
@@ -714,28 +728,48 @@ CythonPPParser::FunctionDefinitionContext* CythonPPParser::functionDefinition() 
   });
   try {
     enterOuterAlt(_localctx, 1);
-    setState(56);
-    match(CythonPPParser::AUTO);
-    setState(57);
+    setState(63);
+    _errHandler->sync(this);
+
+    _la = _input->LA(1);
+    if ((((_la & ~ 0x3fULL) == 0) &&
+      ((1ULL << _la) & 124) != 0)) {
+      setState(62);
+      typeSpecifier();
+    }
+    setState(65);
     match(CythonPPParser::IDENTIFIER);
-    setState(58);
+    setState(66);
     match(CythonPPParser::LPAREN);
-    setState(59);
+    setState(68);
+    _errHandler->sync(this);
+
+    switch (getInterpreter<atn::ParserATNSimulator>()->adaptivePredict(_input, 5, _ctx)) {
+    case 1: {
+      setState(67);
+      parameterList();
+      break;
+    }
+
+    default:
+      break;
+    }
+    setState(70);
     match(CythonPPParser::RPAREN);
-    setState(60);
+    setState(71);
     match(CythonPPParser::LBRACE);
-    setState(64);
+    setState(75);
     _errHandler->sync(this);
     _la = _input->LA(1);
     while ((((_la & ~ 0x3fULL) == 0) &&
-      ((1ULL << _la) & 374) != 0)) {
-      setState(61);
+      ((1ULL << _la) & 1532) != 0)) {
+      setState(72);
       statement();
-      setState(66);
+      setState(77);
       _errHandler->sync(this);
       _la = _input->LA(1);
     }
-    setState(67);
+    setState(78);
     match(CythonPPParser::RBRACE);
    
   }
@@ -809,34 +843,34 @@ CythonPPParser::FunctionCallContext* CythonPPParser::functionCall() {
   });
   try {
     enterOuterAlt(_localctx, 1);
-    setState(69);
+    setState(80);
     match(CythonPPParser::IDENTIFIER);
-    setState(70);
+    setState(81);
     match(CythonPPParser::LPAREN);
-    setState(79);
+    setState(90);
     _errHandler->sync(this);
 
     _la = _input->LA(1);
     if ((((_la & ~ 0x3fULL) == 0) &&
-      ((1ULL << _la) & 1792) != 0)) {
-      setState(71);
+      ((1ULL << _la) & 7168) != 0)) {
+      setState(82);
       expression();
-      setState(76);
+      setState(87);
       _errHandler->sync(this);
       _la = _input->LA(1);
-      while (_la == CythonPPParser::T__2) {
-        setState(72);
-        match(CythonPPParser::T__2);
-        setState(73);
+      while (_la == CythonPPParser::T__0) {
+        setState(83);
+        match(CythonPPParser::T__0);
+        setState(84);
         expression();
-        setState(78);
+        setState(89);
         _errHandler->sync(this);
         _la = _input->LA(1);
       }
     }
-    setState(81);
+    setState(92);
     match(CythonPPParser::RPAREN);
-    setState(82);
+    setState(93);
     match(CythonPPParser::SEMI);
    
   }
@@ -910,26 +944,177 @@ CythonPPParser::OutputStatementContext* CythonPPParser::outputStatement() {
   });
   try {
     enterOuterAlt(_localctx, 1);
-    setState(84);
+    setState(95);
     match(CythonPPParser::COUT);
-    setState(85);
+    setState(96);
     match(CythonPPParser::LT_LT);
-    setState(86);
+    setState(97);
     expression();
-    setState(91);
+    setState(102);
     _errHandler->sync(this);
     _la = _input->LA(1);
     while (_la == CythonPPParser::LT_LT) {
-      setState(87);
+      setState(98);
       match(CythonPPParser::LT_LT);
-      setState(88);
+      setState(99);
       expression();
-      setState(93);
+      setState(104);
       _errHandler->sync(this);
       _la = _input->LA(1);
     }
-    setState(94);
+    setState(105);
     match(CythonPPParser::SEMI);
+   
+  }
+  catch (RecognitionException &e) {
+    _errHandler->reportError(this, e);
+    _localctx->exception = std::current_exception();
+    _errHandler->recover(this, _localctx->exception);
+  }
+
+  return _localctx;
+}
+
+//----------------- ParameterListContext ------------------------------------------------------------------
+
+CythonPPParser::ParameterListContext::ParameterListContext(ParserRuleContext *parent, size_t invokingState)
+  : ParserRuleContext(parent, invokingState) {
+}
+
+std::vector<CythonPPParser::TypeSpecifierContext *> CythonPPParser::ParameterListContext::typeSpecifier() {
+  return getRuleContexts<CythonPPParser::TypeSpecifierContext>();
+}
+
+CythonPPParser::TypeSpecifierContext* CythonPPParser::ParameterListContext::typeSpecifier(size_t i) {
+  return getRuleContext<CythonPPParser::TypeSpecifierContext>(i);
+}
+
+std::vector<tree::TerminalNode *> CythonPPParser::ParameterListContext::IDENTIFIER() {
+  return getTokens(CythonPPParser::IDENTIFIER);
+}
+
+tree::TerminalNode* CythonPPParser::ParameterListContext::IDENTIFIER(size_t i) {
+  return getToken(CythonPPParser::IDENTIFIER, i);
+}
+
+
+size_t CythonPPParser::ParameterListContext::getRuleIndex() const {
+  return CythonPPParser::RuleParameterList;
+}
+
+void CythonPPParser::ParameterListContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<CythonPPListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterParameterList(this);
+}
+
+void CythonPPParser::ParameterListContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<CythonPPListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitParameterList(this);
+}
+
+CythonPPParser::ParameterListContext* CythonPPParser::parameterList() {
+  ParameterListContext *_localctx = _tracker.createInstance<ParameterListContext>(_ctx, getState());
+  enterRule(_localctx, 18, CythonPPParser::RuleParameterList);
+  size_t _la = 0;
+
+#if __cplusplus > 201703L
+  auto onExit = finally([=, this] {
+#else
+  auto onExit = finally([=] {
+#endif
+    exitRule();
+  });
+  try {
+    enterOuterAlt(_localctx, 1);
+    setState(118);
+    _errHandler->sync(this);
+
+    _la = _input->LA(1);
+    if ((((_la & ~ 0x3fULL) == 0) &&
+      ((1ULL << _la) & 124) != 0)) {
+      setState(107);
+      typeSpecifier();
+      setState(108);
+      match(CythonPPParser::IDENTIFIER);
+      setState(115);
+      _errHandler->sync(this);
+      _la = _input->LA(1);
+      while (_la == CythonPPParser::T__0) {
+        setState(109);
+        match(CythonPPParser::T__0);
+        setState(110);
+        typeSpecifier();
+        setState(111);
+        match(CythonPPParser::IDENTIFIER);
+        setState(117);
+        _errHandler->sync(this);
+        _la = _input->LA(1);
+      }
+    }
+   
+  }
+  catch (RecognitionException &e) {
+    _errHandler->reportError(this, e);
+    _localctx->exception = std::current_exception();
+    _errHandler->recover(this, _localctx->exception);
+  }
+
+  return _localctx;
+}
+
+//----------------- TypeSpecifierContext ------------------------------------------------------------------
+
+CythonPPParser::TypeSpecifierContext::TypeSpecifierContext(ParserRuleContext *parent, size_t invokingState)
+  : ParserRuleContext(parent, invokingState) {
+}
+
+tree::TerminalNode* CythonPPParser::TypeSpecifierContext::AUTO() {
+  return getToken(CythonPPParser::AUTO, 0);
+}
+
+
+size_t CythonPPParser::TypeSpecifierContext::getRuleIndex() const {
+  return CythonPPParser::RuleTypeSpecifier;
+}
+
+void CythonPPParser::TypeSpecifierContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<CythonPPListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterTypeSpecifier(this);
+}
+
+void CythonPPParser::TypeSpecifierContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<CythonPPListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitTypeSpecifier(this);
+}
+
+CythonPPParser::TypeSpecifierContext* CythonPPParser::typeSpecifier() {
+  TypeSpecifierContext *_localctx = _tracker.createInstance<TypeSpecifierContext>(_ctx, getState());
+  enterRule(_localctx, 20, CythonPPParser::RuleTypeSpecifier);
+  size_t _la = 0;
+
+#if __cplusplus > 201703L
+  auto onExit = finally([=, this] {
+#else
+  auto onExit = finally([=] {
+#endif
+    exitRule();
+  });
+  try {
+    enterOuterAlt(_localctx, 1);
+    setState(120);
+    _la = _input->LA(1);
+    if (!((((_la & ~ 0x3fULL) == 0) &&
+      ((1ULL << _la) & 124) != 0))) {
+    _errHandler->recoverInline(this);
+    }
+    else {
+      _errHandler->reportMatch(this);
+      consume();
+    }
    
   }
   catch (RecognitionException &e) {
