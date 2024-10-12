@@ -3,6 +3,7 @@
 
 
 #include "CythonPPListener.h"
+#include "CythonPPVisitor.h"
 
 #include "CythonPPParser.h"
 
@@ -184,6 +185,14 @@ void CythonPPParser::ProgramContext::exitRule(tree::ParseTreeListener *listener)
     parserListener->exitProgram(this);
 }
 
+
+std::any CythonPPParser::ProgramContext::accept(tree::ParseTreeVisitor *visitor) {
+  if (auto parserVisitor = dynamic_cast<CythonPPVisitor*>(visitor))
+    return parserVisitor->visitProgram(this);
+  else
+    return visitor->visitChildren(this);
+}
+
 CythonPPParser::ProgramContext* CythonPPParser::program() {
   ProgramContext *_localctx = _tracker.createInstance<ProgramContext>(_ctx, getState());
   enterRule(_localctx, 0, CythonPPParser::RuleProgram);
@@ -265,6 +274,14 @@ void CythonPPParser::StatementContext::exitRule(tree::ParseTreeListener *listene
   auto parserListener = dynamic_cast<CythonPPListener *>(listener);
   if (parserListener != nullptr)
     parserListener->exitStatement(this);
+}
+
+
+std::any CythonPPParser::StatementContext::accept(tree::ParseTreeVisitor *visitor) {
+  if (auto parserVisitor = dynamic_cast<CythonPPVisitor*>(visitor))
+    return parserVisitor->visitStatement(this);
+  else
+    return visitor->visitChildren(this);
 }
 
 CythonPPParser::StatementContext* CythonPPParser::statement() {
@@ -381,6 +398,14 @@ void CythonPPParser::VariableDeclarationContext::exitRule(tree::ParseTreeListene
     parserListener->exitVariableDeclaration(this);
 }
 
+
+std::any CythonPPParser::VariableDeclarationContext::accept(tree::ParseTreeVisitor *visitor) {
+  if (auto parserVisitor = dynamic_cast<CythonPPVisitor*>(visitor))
+    return parserVisitor->visitVariableDeclaration(this);
+  else
+    return visitor->visitChildren(this);
+}
+
 CythonPPParser::VariableDeclarationContext* CythonPPParser::variableDeclaration() {
   VariableDeclarationContext *_localctx = _tracker.createInstance<VariableDeclarationContext>(_ctx, getState());
   enterRule(_localctx, 4, CythonPPParser::RuleVariableDeclaration);
@@ -462,6 +487,14 @@ void CythonPPParser::AssignmentContext::exitRule(tree::ParseTreeListener *listen
     parserListener->exitAssignment(this);
 }
 
+
+std::any CythonPPParser::AssignmentContext::accept(tree::ParseTreeVisitor *visitor) {
+  if (auto parserVisitor = dynamic_cast<CythonPPVisitor*>(visitor))
+    return parserVisitor->visitAssignment(this);
+  else
+    return visitor->visitChildren(this);
+}
+
 CythonPPParser::AssignmentContext* CythonPPParser::assignment() {
   AssignmentContext *_localctx = _tracker.createInstance<AssignmentContext>(_ctx, getState());
   enterRule(_localctx, 6, CythonPPParser::RuleAssignment);
@@ -527,6 +560,14 @@ void CythonPPParser::ExpressionContext::exitRule(tree::ParseTreeListener *listen
   auto parserListener = dynamic_cast<CythonPPListener *>(listener);
   if (parserListener != nullptr)
     parserListener->exitExpression(this);
+}
+
+
+std::any CythonPPParser::ExpressionContext::accept(tree::ParseTreeVisitor *visitor) {
+  if (auto parserVisitor = dynamic_cast<CythonPPVisitor*>(visitor))
+    return parserVisitor->visitExpression(this);
+  else
+    return visitor->visitChildren(this);
 }
 
 CythonPPParser::ExpressionContext* CythonPPParser::expression() {
@@ -609,6 +650,14 @@ void CythonPPParser::ClassDeclarationContext::exitRule(tree::ParseTreeListener *
   auto parserListener = dynamic_cast<CythonPPListener *>(listener);
   if (parserListener != nullptr)
     parserListener->exitClassDeclaration(this);
+}
+
+
+std::any CythonPPParser::ClassDeclarationContext::accept(tree::ParseTreeVisitor *visitor) {
+  if (auto parserVisitor = dynamic_cast<CythonPPVisitor*>(visitor))
+    return parserVisitor->visitClassDeclaration(this);
+  else
+    return visitor->visitChildren(this);
 }
 
 CythonPPParser::ClassDeclarationContext* CythonPPParser::classDeclaration() {
@@ -712,6 +761,14 @@ void CythonPPParser::FunctionDefinitionContext::exitRule(tree::ParseTreeListener
   auto parserListener = dynamic_cast<CythonPPListener *>(listener);
   if (parserListener != nullptr)
     parserListener->exitFunctionDefinition(this);
+}
+
+
+std::any CythonPPParser::FunctionDefinitionContext::accept(tree::ParseTreeVisitor *visitor) {
+  if (auto parserVisitor = dynamic_cast<CythonPPVisitor*>(visitor))
+    return parserVisitor->visitFunctionDefinition(this);
+  else
+    return visitor->visitChildren(this);
 }
 
 CythonPPParser::FunctionDefinitionContext* CythonPPParser::functionDefinition() {
@@ -829,6 +886,14 @@ void CythonPPParser::FunctionCallContext::exitRule(tree::ParseTreeListener *list
     parserListener->exitFunctionCall(this);
 }
 
+
+std::any CythonPPParser::FunctionCallContext::accept(tree::ParseTreeVisitor *visitor) {
+  if (auto parserVisitor = dynamic_cast<CythonPPVisitor*>(visitor))
+    return parserVisitor->visitFunctionCall(this);
+  else
+    return visitor->visitChildren(this);
+}
+
 CythonPPParser::FunctionCallContext* CythonPPParser::functionCall() {
   FunctionCallContext *_localctx = _tracker.createInstance<FunctionCallContext>(_ctx, getState());
   enterRule(_localctx, 14, CythonPPParser::RuleFunctionCall);
@@ -930,6 +995,14 @@ void CythonPPParser::OutputStatementContext::exitRule(tree::ParseTreeListener *l
     parserListener->exitOutputStatement(this);
 }
 
+
+std::any CythonPPParser::OutputStatementContext::accept(tree::ParseTreeVisitor *visitor) {
+  if (auto parserVisitor = dynamic_cast<CythonPPVisitor*>(visitor))
+    return parserVisitor->visitOutputStatement(this);
+  else
+    return visitor->visitChildren(this);
+}
+
 CythonPPParser::OutputStatementContext* CythonPPParser::outputStatement() {
   OutputStatementContext *_localctx = _tracker.createInstance<OutputStatementContext>(_ctx, getState());
   enterRule(_localctx, 16, CythonPPParser::RuleOutputStatement);
@@ -1014,6 +1087,14 @@ void CythonPPParser::ParameterListContext::exitRule(tree::ParseTreeListener *lis
     parserListener->exitParameterList(this);
 }
 
+
+std::any CythonPPParser::ParameterListContext::accept(tree::ParseTreeVisitor *visitor) {
+  if (auto parserVisitor = dynamic_cast<CythonPPVisitor*>(visitor))
+    return parserVisitor->visitParameterList(this);
+  else
+    return visitor->visitChildren(this);
+}
+
 CythonPPParser::ParameterListContext* CythonPPParser::parameterList() {
   ParameterListContext *_localctx = _tracker.createInstance<ParameterListContext>(_ctx, getState());
   enterRule(_localctx, 18, CythonPPParser::RuleParameterList);
@@ -1089,6 +1170,14 @@ void CythonPPParser::TypeSpecifierContext::exitRule(tree::ParseTreeListener *lis
   auto parserListener = dynamic_cast<CythonPPListener *>(listener);
   if (parserListener != nullptr)
     parserListener->exitTypeSpecifier(this);
+}
+
+
+std::any CythonPPParser::TypeSpecifierContext::accept(tree::ParseTreeVisitor *visitor) {
+  if (auto parserVisitor = dynamic_cast<CythonPPVisitor*>(visitor))
+    return parserVisitor->visitTypeSpecifier(this);
+  else
+    return visitor->visitChildren(this);
 }
 
 CythonPPParser::TypeSpecifierContext* CythonPPParser::typeSpecifier() {

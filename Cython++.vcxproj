@@ -137,6 +137,10 @@
     <ClCompile Include="grammar\CythonPPLexer.cpp" />
     <ClCompile Include="grammar\CythonPPListener.cpp" />
     <ClCompile Include="grammar\CythonPPParser.cpp" />
+    <ClCompile Include="src\ASTBuilder.cpp" />
+    <ClCompile Include="src\ASTVisitor.cpp" />
+    <ClCompile Include="src\main.cpp" />
+    <ClCompile Include="src\SemanticAnalyzer.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="build\CMakeFiles\3.30.4\CMakeDetermineCompilerABI_C.bin" />
@@ -147,6 +151,9 @@
     <ClInclude Include="grammar\CythonPPLexer.h" />
     <ClInclude Include="grammar\CythonPPListener.h" />
     <ClInclude Include="grammar\CythonPPParser.h" />
+    <ClInclude Include="include\ASTNodes.h" />
+    <ClInclude Include="include\ASTVisitor.h" />
+    <ClInclude Include="include\SemanticAnalyzer.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
