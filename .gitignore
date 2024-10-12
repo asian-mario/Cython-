@@ -1,4 +1,52 @@
+# Build directories
 build/
+Release/
+Debug/
+CMakeFiles/
+
+# Visual Studio specific
+.vs/
+*.vcxproj.user
+*.vcxproj.filters
+*.sln
+
+# CMake generated files
+CMakeCache.txt
+CMakeFiles/
+*.cmake
+Makefile
+install_manifest.txt
+compile_commands.json
+Testing/
+
+# Object and executable files
 *.o
+*.obj
 *.exe
 *.class
+*.ilk
+*.pdb
+*.idb
+*.ipch
+*.tlog
+*.lastbuildstate
+*.log
+
+# Other IDE and build system related
+*.ncb
+*.sdf
+*.opensdf
+*.vcxproj.*
+*.dir
+
+# ANTLR generated files
+*.interp
+*.tokens
+
+# Temporary files
+*.tmp
+*.temp
+*.log
+*.cache
+*.pdb
+*.VC.opendb
