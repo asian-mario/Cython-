@@ -81,3 +81,62 @@ std::any ASTBuilder::visitAssignment(CythonPPParser::AssignmentContext* ctx) {
     auto node = std::make_shared<AssignmentNode>(name, value);
     return std::any(node);
 }
+
+std::any ASTBuilder::visitFunctionDefinition(CythonPPParser::FunctionDefinitionContext* ctx) {
+    std::cout << "Visiting Function Definition Node" << std::endl;
+    std::string functionName = ctx->IDENTIFIER()->getText();
+    std::vector<std::shared_ptr<ASTNode>> body;
+
+    // Iterate through each statement in the function body
+    for (auto stmt : ctx->statement()) {
+        auto result = visit(stmt);
+        if (result.has_value()) {
+            try {
+                auto statementNode = std::any_cast<std::shared_ptr<ASTNode>>(result);
+                body.push_back(statementNode);
+            }
+            catch (const std::bad_any_cast& e) {
+                std::cerr << "Error casting statement in FunctionDefinitionNode: " << e.what() << std::endl;
+                return {};
+            }
+        }
+        else {
+            std::cerr << "Error: visit() did not return a value for a statement in FunctionDefinitionNode." << std::endl;
+            return {};
+        }
+    }
+
+    // Create a FunctionDefinitionNode and wrap it in std::any
+    auto node = std::make_shared<FunctionDefinitionNode>(functionName, body);
+    return std::any(node);
+}
+
+std::any ASTBuilder::visitOutputStatement(CythonPPParser::OutputStatementContext* ctx) {
+    std::cout << "Visiting Output Statement Node" << std::endl;
+
+    // Retrieve the value being output
+    std::vector<std::shared_ptr<ASTNode>> expressions;
+
+    // Iterate over each expression in the output statement
+    for (auto expr : ctx->expression()) {
+        auto result = visit(expr);
+        if (result.has_value()) {
+            try {
+                auto expressionNode = std::any_cast<std::shared_ptr<ASTNode>>(result);
+                expressions.push_back(expressionNode);
+            }
+            catch (const std::bad_any_cast& e) {
+                std::cerr << "Error casting expression in OutputStatementNode: " << e.what() << std::endl;
+                return {};
+            }
+        }
+        else {
+            std::cerr << "Error: visit() did not return a value for an expression in OutputStatementNode." << std::endl;
+            return {};
+        }
+    }
+
+    // Create and return OutputStatementNode
+    auto node = std::make_shared<OutputStatementNode>(expressions);
+    return std::any(node);
+}

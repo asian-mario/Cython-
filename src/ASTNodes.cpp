@@ -15,3 +15,15 @@ void FunctionCallNode::accept(ASTVisitor& visitor) {
 void ClassNode::accept(ASTVisitor& visitor) {
     visitor.visit(*this);
 }
+
+void AssignmentNode::accept(ASTVisitor& visitor) {
+    visitor.visit(*this);
+}
+
+void FunctionDefinitionNode::accept(ASTVisitor& visitor) {
+    visitor.visit(*this);
+}
+
+void OutputStatementNode::accept(ASTVisitor& visitor) {
+    visitor.visit(*this);
+}

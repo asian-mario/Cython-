@@ -11,6 +11,9 @@ public:
     std::any visitFunctionCall(CythonPPParser::FunctionCallContext* ctx) override;
     std::any visitClassDeclaration(CythonPPParser::ClassDeclarationContext* ctx) override;
     std::any visitAssignment(CythonPPParser::AssignmentContext* ctx) override;  // New visitor method
+    std::any visitFunctionDefinition(CythonPPParser::FunctionDefinitionContext* ctx) override; 
+    std::any visitOutputStatement(CythonPPParser::OutputStatementContext* ctx) override;
+
 
     // Add other declarations for additional AST nodes...
 };
