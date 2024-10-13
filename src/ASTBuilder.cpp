@@ -44,18 +44,16 @@ std::any ASTBuilder::visitFunctionCall(CythonPPParser::FunctionCallContext* ctx)
 }
 
 
-// Implementation of visitClassDeclaration
 std::any ASTBuilder::visitClassDeclaration(CythonPPParser::ClassDeclarationContext* ctx) {
     std::cout << "Visiting Class Declaration Node" << std::endl;
     std::string className = ctx->IDENTIFIER()->getText();
     std::vector<std::shared_ptr<ASTNode>> body;
 
     for (auto stmt : ctx->statement()) {
-        std::cout << "Visiting statement inside class: " << stmt->getText() << std::endl;
-        auto result = visit(stmt);
-        if (result.has_value()) {
+        auto stmtResult = visit(stmt);
+        if (stmtResult.has_value()) {
             try {
-                auto statementNode = std::any_cast<std::shared_ptr<ASTNode>>(result);
+                auto statementNode = std::any_cast<std::shared_ptr<ASTNode>>(stmtResult);
                 body.push_back(statementNode);
             }
             catch (const std::bad_any_cast& e) {
@@ -69,9 +67,9 @@ std::any ASTBuilder::visitClassDeclaration(CythonPPParser::ClassDeclarationConte
         }
     }
 
-    auto node = std::make_shared<ClassNode>(className, body);
-    return std::any(node);
+    return std::make_shared<ClassNode>(className, body);
 }
+
 
 std::any ASTBuilder::visitAssignment(CythonPPParser::AssignmentContext* ctx) {
     std::cout << "Visiting Assignment Node" << std::endl;
@@ -87,12 +85,11 @@ std::any ASTBuilder::visitFunctionDefinition(CythonPPParser::FunctionDefinitionC
     std::string functionName = ctx->IDENTIFIER()->getText();
     std::vector<std::shared_ptr<ASTNode>> body;
 
-    // Iterate through each statement in the function body
     for (auto stmt : ctx->statement()) {
-        auto result = visit(stmt);
-        if (result.has_value()) {
+        auto stmtResult = visit(stmt);
+        if (stmtResult.has_value()) {
             try {
-                auto statementNode = std::any_cast<std::shared_ptr<ASTNode>>(result);
+                auto statementNode = std::any_cast<std::shared_ptr<ASTNode>>(stmtResult);
                 body.push_back(statementNode);
             }
             catch (const std::bad_any_cast& e) {
@@ -106,23 +103,20 @@ std::any ASTBuilder::visitFunctionDefinition(CythonPPParser::FunctionDefinitionC
         }
     }
 
-    // Create a FunctionDefinitionNode and wrap it in std::any
-    auto node = std::make_shared<FunctionDefinitionNode>(functionName, body);
-    return std::any(node);
+    return std::make_shared<FunctionDefinitionNode>(functionName, body);
 }
+
 
 std::any ASTBuilder::visitOutputStatement(CythonPPParser::OutputStatementContext* ctx) {
     std::cout << "Visiting Output Statement Node" << std::endl;
 
-    // Retrieve the value being output
     std::vector<std::shared_ptr<ASTNode>> expressions;
 
-    // Iterate over each expression in the output statement
     for (auto expr : ctx->expression()) {
-        auto result = visit(expr);
-        if (result.has_value()) {
+        auto expressionResult = visit(expr);
+        if (expressionResult.has_value()) {
             try {
-                auto expressionNode = std::any_cast<std::shared_ptr<ASTNode>>(result);
+                auto expressionNode = std::any_cast<std::shared_ptr<ASTNode>>(expressionResult);
                 expressions.push_back(expressionNode);
             }
             catch (const std::bad_any_cast& e) {
@@ -136,7 +130,7 @@ std::any ASTBuilder::visitOutputStatement(CythonPPParser::OutputStatementContext
         }
     }
 
-    // Create and return OutputStatementNode
-    auto node = std::make_shared<OutputStatementNode>(expressions);
-    return std::any(node);
+    return std::make_shared<OutputStatementNode>(expressions);
 }
+
+
